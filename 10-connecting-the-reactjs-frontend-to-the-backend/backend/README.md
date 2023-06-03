@@ -38,3 +38,28 @@ await sess.commitTransaction(); //only at this point is changes committed to db,
 - NB: you can only use .populate() if the connection of schemas was established.
 - .populate('creator') from current collection, use this property "creator" which has the userId and refer a document stored in another collection
   and searches through the data
+
+## URLSearchParams
+
+- can create param key and values using URLSearchParams({})
+
+```js
+const params = new URLSearchParams({ [API_KEY_NAME]: API_KEY_VALUE });
+```
+
+## URL params
+
+if you use postman and add query string params like: 'localhost:5000/api/places/map?lat=0.444&lng=9.3&zoom=16'
+
+- you get access to this
+
+```js
+const url = require('url');
+
+console.log(url.parse(req.url, true).query);
+
+// or access them like this...
+const latParams = req.query.lat;
+const lngParams = req.query.lng;
+const zoomParams = req.query.zoom;
+```

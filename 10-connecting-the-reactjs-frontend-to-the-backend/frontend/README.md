@@ -27,6 +27,7 @@ try {
 
 - needs to be run on same domain, to fix by adjusting headers using cors
 
-```
+## Hiding google api key
 
-```
+- store the key in .env on server
+- create an endpoint to handle requests from frontend and return data via server endpoint

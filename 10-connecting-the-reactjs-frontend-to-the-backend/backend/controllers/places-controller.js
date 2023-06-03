@@ -239,7 +239,7 @@ const deletePlace = async (req, res, next) => {
     return next(error);
   }
 
-  res.status(200).json({ deleted: placeId });
+  res.status(200).json({ message: placeId });
 };
 
 module.exports.updatePlace = updatePlace;
