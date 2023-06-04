@@ -66,23 +66,21 @@ const Auth = () => {
 
     if (isLoginMode) {
       try {
-        await sendRequest(
+        const responseData = await sendRequest(
           'http://localhost:5000/api/users/login',
           'POST',
-          {
-            'Content-Type': 'application/json',
-          },
           JSON.stringify({
             email: formState.inputs.email.value,
             password: formState.inputs.password.value,
-          })
+          }),
+          { 'Content-Type': 'application/json' }
         );
 
-        auth.login(); //this may redirect - so setLoading(false) should happen before this...
+        auth.login(responseData.user.id); //this may redirect - so setLoading(false) should happen before this...
       } catch (err) {}
     } else {
       try {
-        await sendRequest(
+        const responseData = await sendRequest(
           'http://localhost:5000/api/users/signup',
           'POST',
           JSON.stringify({
@@ -94,7 +92,7 @@ const Auth = () => {
           { 'Content-Type': 'application/json' }
         );
 
-        auth.login(); //this may redirect - so setLoading(false) should happen before this...
+        auth.login(responseData.user.id); //this may redirect - so setLoading(false) should happen before this...
       } catch (err) {}
     }
   };
@@ -132,8 +130,8 @@ const Auth = () => {
             id='password'
             type='password'
             label='Password'
-            validators={[VALIDATOR_MINLENGTH(5)]}
-            errorText='Please enter a valid password, at least 5 characters.'
+            validators={[VALIDATOR_MINLENGTH(6)]}
+            errorText='Please enter a valid password, at least 6 characters.'
             onInput={inputHandler}
           />
           <Button type='submit' disabled={!formState.isValid}>

@@ -63,3 +63,18 @@ const latParams = req.query.lat;
 const lngParams = req.query.lng;
 const zoomParams = req.query.zoom;
 ```
+
+## URL params (another option ONLY WHEN WORKING WITH <Route> Component)
+
+- useParams is a hook that allows you to access and retrieve URL parameters in your components.
+- URL parameters are dynamic segments within a URL that can be used to pass data or identify specific resources. For example, in the URL path /users/:id, the :id portion is a URL parameter that can represent a unique identifier for a user.
+- if the current URL matches the route /users/:id (e.g., /users/123), the useParams hook will provide an object with a property named id, which holds the corresponding value (123 in this case). You can then use this value to fetch data or render content specific to that user.
+- Note that useParams can only be used within a component that is rendered within a <Route> component provided by the React Router library. It won't work outside of routing-related components.
+
+```js
+// eg. route is /users/:id
+
+import { useParams } from 'react-router-dom';
+
+const { id } = useParams(); //id is '123'
+```

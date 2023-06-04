@@ -11,7 +11,7 @@ const Users = () => {
   const [loadedUsers, setLoadedUsers] = useState();
 
   useEffect(() => {
-    async function sendRequest() {
+    const fetchUsers = async () => {
       try {
         const responseData = await sendRequest(
           `http://localhost:5000/api/users`
@@ -19,8 +19,8 @@ const Users = () => {
 
         setLoadedUsers(responseData.users);
       } catch (err) {}
-    }
-    sendRequest();
+    };
+    fetchUsers();
   }, [sendRequest]);
 
   return (
