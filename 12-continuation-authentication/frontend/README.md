@@ -78,3 +78,25 @@ app.use((error, req, res, next) => {
 const path = require('path');
 app.use('/uploads/images/', express.static(path.join('uploads', 'images'))); //only files in uploads/images are returned...
 ```
+
+## useAuth hook
+
+- the useAuth hook destructures and plugs into AuthContext.Provider
+
+```js
+//App.js
+import { useAuth } from './shared/hooks/auth-hook';
+import { AuthContext } from './shared/context/auth-context';
+
+const { token, login, logout, userId } = useAuth();
+
+<AuthContext.Provider
+  value={{
+    isLoggedIn: !!token, //token converted to boolean
+    token: token,
+    userId: userId,
+    login: login,
+    logout: logout,
+  }}
+></AuthContext.Provider>;
+```
