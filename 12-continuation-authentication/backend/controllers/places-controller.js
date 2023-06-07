@@ -96,7 +96,7 @@ const createPlace = async (req, res, next) => {
 
   //get data of form parsed with body parser
 
-  const { title, description, address, creator } = req.body; //can pass this data in from postman
+  const { title, description, address } = req.body; //can pass this data in from postman
 
   let coordinates;
 
@@ -113,13 +113,13 @@ const createPlace = async (req, res, next) => {
     address,
     location: coordinates,
     image: req.file.path,
-    creator,
+    creator: req.userData.userId,
   });
 
   //check if user already exists
   let user;
   try {
-    user = await User.findById(creator);
+    user = await User.findById(req.userData.userId);
   } catch (err) {
     const error = new HttpError('Creating place failed, please try again', 500);
     return next(error);
