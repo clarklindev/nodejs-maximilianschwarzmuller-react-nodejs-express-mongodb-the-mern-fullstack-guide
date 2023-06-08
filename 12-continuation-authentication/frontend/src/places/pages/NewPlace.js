@@ -60,7 +60,7 @@ const NewPlace = () => {
       //for anything but "GET" requests, browser sends an OPTIONS request before it sends the actual request you want to send
       //to find out if the server will permit the request you want to send
       await sendRequest(
-        'http://localhost:5000/api/places',
+        `${process.env.REACT_APP_BACKEND_URL}/places`,
         'POST',
         // JSON.stringify({
         //   title: formState.inputs.title.value,

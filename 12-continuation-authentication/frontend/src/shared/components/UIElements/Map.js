@@ -13,7 +13,9 @@ const Map = (props) => {
   useEffect(() => {
     //getapi
     const getApiKey = async () => {
-      const response = await fetch('http://localhost:5000/api/admin/key');
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/admin/key`
+      );
       const responseData = await response.json();
 
       setApiKey(responseData.key);

@@ -4,17 +4,20 @@
 
 ```js
 try {
-  const response = await fetch('http://localhost:5000/api/users/signup', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      name: formState.inputs.name.value,
-      email: formState.inputs.email.value,
-      password: formState.inputs.password.value,
-    }),
-  });
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_URL}/users/signup`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: formState.inputs.name.value,
+        email: formState.inputs.email.value,
+        password: formState.inputs.password.value,
+      }),
+    }
+  );
 
   const responseData = await response.json();
   console.log(responseData);
@@ -41,7 +44,7 @@ formData.append('name', formState.inputs.name.value);
 formData.append('password', formState.inputs.password.value);
 formData.append('image', formState.inputs.image.value);
 const responseData = await sendRequest(
-  'http://localhost:5000/api/users/signup',
+  `${process.env.REACT_APP_BACKEND_URL}/users/signup`,
   'POST',
 
   // JSON.stringify({
@@ -100,3 +103,15 @@ const { token, login, logout, userId } = useAuth();
   }}
 ></AuthContext.Provider>;
 ```
+
+## env variables on frontend
+
+- in .env file (automatically picked up by react-scripts)
+- has to start with "REACT_APP\_"
+
+## building for production
+
+- react scripts automatically picks up file named .env.production if you need to set variables for production put it in this file
+- this is useful if you want to use different api keys for production vs development
+
+- instead of using Heroku (no free tier anymore) use render https://dashboard.render.com/
