@@ -87,7 +87,7 @@ mongoose
   .connect(
     // `mongodb+srv://${process.env.DB_USERNAME}${process.env.DB_PASSWORD}@cluster0.517767p.mongodb.net/${process.env.DB}?retryWrites=true&w=majority`
     `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@ac-hxcxvdr-shard-00-00.517767p.mongodb.net:27017,ac-hxcxvdr-shard-00-01.517767p.mongodb.net:27017,ac-hxcxvdr-shard-00-02.517767p.mongodb.net:27017/?ssl=true&replicaSet=atlas-stbdax-shard-0&authSource=admin&retryWrites=true&w=majority`,
-    { dbName: process.env.DB }
+    { dbName: process.env.DB_NAME }
   )
   .then(() => {
     console.log('server started...');
