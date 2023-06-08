@@ -109,7 +109,7 @@ const { token, login, logout, userId } = useAuth();
 - in .env file (automatically picked up by react-scripts)
 - has to start with "REACT_APP\_"
 
-## building for production
+## building for production (USING Render)
 
 - react scripts automatically picks up file named .env.production if you need to set variables for production put it in this file
 - this is useful if you want to use different api keys for production vs development
