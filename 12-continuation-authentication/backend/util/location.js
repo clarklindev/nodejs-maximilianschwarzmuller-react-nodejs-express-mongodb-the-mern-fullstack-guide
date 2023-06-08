@@ -9,16 +9,19 @@ const getCoordsForAddress = async (address) => {
   // return coords;
 
   console.log('gets here...');
-  console.log('process.env.API_KEY.length: ', process.env.API_KEY.length);
-  if (!process.env.API_KEY || process.env.API_KEY.length === 0) {
-    throw new Error('You forgot to set API_KEY in .env file');
+  console.log(
+    'process.env.GOOGLE_API_KEY.length: ',
+    process.env.GOOGLE_API_KEY.length
+  );
+  if (!process.env.GOOGLE_API_KEY || process.env.GOOGLE_API_KEY.length === 0) {
+    throw new Error('You forgot to set GOOGLE_API_KEY in .env file');
   }
 
   //send request
   const response = await fetch(
     `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
       address
-    )}&key=${process.env.API_KEY}`
+    )}&key=${process.env.GOOGLE_API_KEY}`
   );
 
   console.log('response: ', response);
