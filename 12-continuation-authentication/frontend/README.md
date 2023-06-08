@@ -115,3 +115,15 @@ const { token, login, logout, userId } = useAuth();
 - this is useful if you want to use different api keys for production vs development
 
 - instead of using Heroku (no free tier anymore) use render https://dashboard.render.com/
+
+- render.com - if you add the project - it asks for build command
+
+```shell
+npm i
+```
+
+- start command
+
+```shell
+npm run start
+```
