@@ -1,4 +1,4 @@
-mongodb database needs to exist
+https://www.udemy.com/course/react-nodejs-express-mongodb-the-mern-fullstack-guide/
 
 - can log in with clark@gmail.com / testing
 
