@@ -127,3 +127,26 @@ npm i
 ```shell
 npm run start
 ```
+
+### deploying the frontend
+
+- using static hosting site such as firebase
+- install firebase cli https://firebase.google.com/docs/cli#install-cli-windows
+
+- (google account)
+
+```shell
+firebase login
+```
+
+-(from the folder you want firebase to host) eg. frontend/ folder
+
+```shell
+firebase init
+```
+
+- deploy frontend
+
+```shell
+firebase deploy
+```
