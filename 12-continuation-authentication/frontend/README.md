@@ -117,6 +117,8 @@ const { token, login, logout, userId } = useAuth();
 - instead of using Heroku (no free tier anymore) use render https://dashboard.render.com/
 
 - render.com - if you add the project - it asks for build command
+- render by default uses node version 14.17.0
+- to use different version add a env variable called NODE_VERSION=18.14.2 (fetch is only supported from node v17 onwards)
 
 ```shell
 npm i
@@ -150,3 +152,5 @@ firebase init
 ```shell
 firebase deploy
 ```
+
+###
