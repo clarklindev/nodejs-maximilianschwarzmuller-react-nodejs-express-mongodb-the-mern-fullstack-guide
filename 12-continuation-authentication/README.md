@@ -1,6 +1,11 @@
-mongodb database needs to exist
+# login
 
 - can log in with clark@gmail.com / testing
 
-- frontend link: https://maximilian-nodejsmern-frontend.web.app/
-- backend link: https://backend-nodejs-mern-maximilian.onrender.com
+# hosted
+
+- hosted with google firebase hosting - frontend link: https://maximilian-nodejsmern-frontend.web.app/
+- hosted with render - testing with postman backend link: https://backend-nodejs-mern-maximilian.onrender.com
+- mongodb atlas database: NODEJS-MERN-STACK-UDEMY-MAXMILLIAN
+  - production-> places
+  - production-> users
