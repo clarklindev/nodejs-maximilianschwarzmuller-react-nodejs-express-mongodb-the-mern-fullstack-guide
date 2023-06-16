@@ -13,7 +13,7 @@ router.post(
   [
     check('name').not().isEmpty(),
     check('email')
-      .normalizeEmail() // Test@test.com => test@test.com
+      .normalizeEmail({ gmail_remove_dots: false }) // Test@test.com => test@test.com
       .isEmail(),
     check('password').isLength({ min: 6 }),
   ],
