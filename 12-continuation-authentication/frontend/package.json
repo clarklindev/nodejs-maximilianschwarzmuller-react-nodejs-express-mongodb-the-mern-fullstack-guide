@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.15.2",
+    "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^5.1.2",

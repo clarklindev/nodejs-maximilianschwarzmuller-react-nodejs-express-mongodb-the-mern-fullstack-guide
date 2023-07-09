@@ -1,5 +1,22 @@
 # Frontend
 
+## GOTCHAS
+
+- env variables are given when using create-react-app projects so you dont need to install dotenv
+- your variable names in the .env need to start with `REACT_APP_`
+
+```.env
+
+REACT_APP_BACKEND_URL=http://localhost:8000
+
+```
+
+```js
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
+```
+
+---
+
 ## Auth
 
 ```js

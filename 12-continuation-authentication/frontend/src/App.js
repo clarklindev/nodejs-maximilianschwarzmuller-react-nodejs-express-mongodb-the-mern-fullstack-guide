@@ -5,8 +5,13 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
+import process from 'process';
 
 import { useAuth } from './shared/hooks/auth-hook';
+
+import MainNavigation from './shared/components/Navigation/MainNavigation';
+import { AuthContext } from './shared/context/auth-context';
+import LoadingSpinner from './shared/components/UIElements/LoadingSpinner';
 
 // replace imports with lazy loading...
 // import Users from './user/pages/Users';
@@ -14,10 +19,6 @@ import { useAuth } from './shared/hooks/auth-hook';
 // import UserPlaces from './places/pages/UserPlaces';
 // import UpdatePlace from './places/pages/UpdatePlace';
 // import Auth from './user/pages/Auth';
-import MainNavigation from './shared/components/Navigation/MainNavigation';
-import { AuthContext } from './shared/context/auth-context';
-import LoadingSpinner from './shared/components/UIElements/LoadingSpinner';
-
 const Users = React.lazy(() => import('./user/pages/Users'));
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace'));
 const UserPlaces = React.lazy(() => import('./places/pages/UserPlaces'));
@@ -27,6 +28,8 @@ const Auth = React.lazy(() => import('./user/pages/Auth'));
 const App = () => {
   const { token, login, logout, userId } = useAuth();
 
+  console.log('BACKEND_URL', process.env.REACT_APP_BACKEND_URL);
+
   let routes;
 
   if (token) {
@@ -35,7 +38,10 @@ const App = () => {
         <Route path='/' exact>
           <Users />
         </Route>
-        <Route path='/:userId/places' exact>
+        <Route path='/users' exact>
+          <Users />
+        </Route>
+        <Route path='/users/:userId/places' exact>
           <UserPlaces />
         </Route>
         <Route path='/places/new' exact>
@@ -53,7 +59,10 @@ const App = () => {
         <Route path='/' exact>
           <Users />
         </Route>
-        <Route path='/:userId/places' exact>
+        <Route path='/users'>
+          <Users />
+        </Route>
+        <Route path='/users/:userId/places'>
           <UserPlaces />
         </Route>
         <Route path='/auth'>
