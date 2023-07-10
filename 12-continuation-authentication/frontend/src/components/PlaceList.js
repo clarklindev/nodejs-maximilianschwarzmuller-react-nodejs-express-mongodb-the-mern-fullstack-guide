@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Card from '../../shared/components/UIElements/Card';
+import Card from '../shared/components/UIElements/Card';
 import PlaceItem from './PlaceItem';
-import Button from '../../shared/components/FormElements/Button';
-import './PlaceList.css';
+import Button from '../shared/components/FormElements/Button';
+import styles from './PlaceList.module.css';
 
 const PlaceList = (props) => {
   if (props.items.length === 0) {
@@ -18,7 +18,7 @@ const PlaceList = (props) => {
   }
 
   return (
-    <ul className='place-list'>
+    <ul className={styles['place-list']}>
       {props.items.map((place) => (
         <PlaceItem
           key={place.id}

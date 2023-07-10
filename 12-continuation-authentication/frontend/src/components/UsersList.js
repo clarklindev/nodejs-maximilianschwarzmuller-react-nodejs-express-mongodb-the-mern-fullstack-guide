@@ -1,8 +1,8 @@
 import React from 'react';
 
 import UserItem from './UserItem';
-import Card from '../../shared/components/UIElements/Card';
-import './UsersList.css';
+import Card from '../shared/components/UIElements/Card';
+import styles from './UsersList.module.css';
 
 const UsersList = (props) => {
   if (props.items.length === 0) {
@@ -16,7 +16,7 @@ const UsersList = (props) => {
   }
 
   return (
-    <ul className='users-list'>
+    <ul className={styles['users-list']}>
       {props.items.map((user) => (
         <UserItem
           key={user.id}

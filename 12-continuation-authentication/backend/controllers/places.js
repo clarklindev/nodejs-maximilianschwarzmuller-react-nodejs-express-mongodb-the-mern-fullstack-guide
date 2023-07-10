@@ -57,34 +57,6 @@ const getAllPlaces = async (req, res, next) => {
   });
 };
 
-const getPlacesByUserId = async (req, res, next) => {
-  const userId = req.params.uid;
-
-  let userWithPlaces;
-
-  try {
-    userWithPlaces = await User.findById(userId).populate('places');
-  } catch (err) {
-    const error = new HttpError(
-      'Fetching places failed, please try again later.',
-      500
-    );
-    return next(error);
-  }
-
-  if (!userWithPlaces || userWithPlaces.places.length === 0) {
-    return next(
-      new HttpError('Could not find places for the provided user id.', 404)
-    );
-  }
-
-  res.json({
-    places: userWithPlaces.places.map((place) =>
-      place.toObject({ getters: true })
-    ),
-  });
-};
-
 const createPlace = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -265,9 +237,8 @@ const deletePlace = async (req, res, next) => {
   res.status(200).json({ message: `deleted:${placeId}` });
 };
 
-module.exports.updatePlace = updatePlace;
-module.exports.deletePlace = deletePlace;
-module.exports.createPlace = createPlace;
-module.exports.getAllPlaces = getAllPlaces;
-module.exports.getPlaceById = getPlaceById;
-module.exports.getPlacesByUserId = getPlacesByUserId;
+exports.getAllPlaces = getAllPlaces;
+exports.updatePlace = updatePlace;
+exports.deletePlace = deletePlace;
+exports.createPlace = createPlace;
+exports.getPlaceById = getPlaceById;

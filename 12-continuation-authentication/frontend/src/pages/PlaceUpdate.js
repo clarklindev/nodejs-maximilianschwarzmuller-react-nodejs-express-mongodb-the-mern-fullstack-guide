@@ -1,21 +1,21 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
-import Input from '../../shared/components/FormElements/Input';
-import Button from '../../shared/components/FormElements/Button';
-import Card from '../../shared/components/UIElements/Card';
-import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
-import ErrorModal from '../../shared/components/UIElements/ErrorModal';
-import { useHttpClient } from '../../shared/hooks/http-hook';
+import Input from '../shared/components/FormElements/Input';
+import Button from '../shared/components/FormElements/Button';
+import Card from '../shared/components/UIElements/Card';
+import LoadingSpinner from '../shared/components/UIElements/LoadingSpinner';
+import ErrorModal from '../shared/components/UIElements/ErrorModal';
+import { useHttpClient } from '../shared/hooks/http-hook';
 
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
-} from '../../shared/util/validators';
+} from '../shared/util/validators';
 
-import { useForm } from '../../shared/hooks/form-hook';
-import { AuthContext } from '../../shared/context/auth-context';
-import './PlaceForm.css';
+import { useForm } from '../shared/hooks/form-hook';
+import { AuthContext } from '../shared/context/auth-context';
+import styles from './Place.module.css';
 
 const UpdatePlace = () => {
   const auth = useContext(AuthContext);
@@ -41,9 +41,11 @@ const UpdatePlace = () => {
   useEffect(() => {
     const fetchPlace = async () => {
       try {
-        const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/places/${placeId}`
-        );
+        const requestURL = `${process.env.REACT_APP_BACKEND_URL}/places/${placeId}`;
+        console.log('requestUrl: ', requestURL);
+
+        const responseData = await sendRequest(requestURL);
+        console.log('responseData: ', responseData);
 
         setLoadedPlace(responseData.place);
 
@@ -108,7 +110,10 @@ const UpdatePlace = () => {
     <>
       <ErrorModal error={error} onClear={clearError} />
       {!isLoading && loadedPlace && (
-        <form className='place-form' onSubmit={placeUpdateSubmitHandler}>
+        <form
+          className={styles['place-form']}
+          onSubmit={placeUpdateSubmitHandler}
+        >
           <Input
             id='title'
             element='input'

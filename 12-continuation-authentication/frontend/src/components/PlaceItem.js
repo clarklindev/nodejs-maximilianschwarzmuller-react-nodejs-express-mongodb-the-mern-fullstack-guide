@@ -1,17 +1,17 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import Card from '../../shared/components/UIElements/Card';
-import Button from '../../shared/components/FormElements/Button';
-import Modal from '../../shared/components/UIElements/Modal';
-import Map from '../../shared/components/UIElements/Map';
-import { AuthContext } from '../../shared/context/auth-context';
-import { useHttpClient } from '../../shared/hooks/http-hook';
+import Card from '../shared/components/UIElements/Card';
+import Button from '../shared/components/FormElements/Button';
+import Modal from '../shared/components/UIElements/Modal';
+import Map from '../shared/components/UIElements/Map';
+import { AuthContext } from '../shared/context/auth-context';
+import { useHttpClient } from '../shared/hooks/http-hook';
 
-import ErrorModal from '../../shared/components/UIElements/ErrorModal';
-import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+import ErrorModal from '../shared/components/UIElements/ErrorModal';
+import LoadingSpinner from '../shared/components/UIElements/LoadingSpinner';
 
-import './PlaceItem.css';
+import styles from './PlaceItem.module.css';
 
 const PlaceItem = (props) => {
   const auth = useContext(AuthContext);
@@ -59,7 +59,7 @@ const PlaceItem = (props) => {
         footerClass='place-item__modal-actions'
         footer={<Button onClick={closeMapHandler}>CLOSE</Button>}
       >
-        <div className='map-container'>
+        <div className={styles['map-container']}>
           <Map center={props.coordinates} zoom={16} />
         </div>
       </Modal>
@@ -84,21 +84,21 @@ const PlaceItem = (props) => {
           can't be undone thereafter.
         </p>
       </Modal>
-      <li className='place-item'>
-        <Card className='place-item__content'>
+      <li className={styles['place-item']}>
+        <Card className={styles['place-item__content']}>
           {isLoading && <LoadingSpinner asOverlay />}
-          <div className='place-item__image'>
+          <div className={styles['place-item__image']}>
             <img
-              src={`${process.env.REACT_APP_ASSET_URL}/${props.image}`}
+              src={`${process.env.REACT_APP_BACKEND_URL}/${props.image}`}
               alt={props.title}
             />
           </div>
-          <div className='place-item__info'>
+          <div className={styles['place-item__info']}>
             <h2>{props.title}</h2>
             <h3>{props.address}</h3>
             <p>{props.description}</p>
           </div>
-          <div className='place-item__actions'>
+          <div className={styles['place-item__actions']}>
             <Button inverse onClick={openMapHandler}>
               VIEW ON MAP
             </Button>

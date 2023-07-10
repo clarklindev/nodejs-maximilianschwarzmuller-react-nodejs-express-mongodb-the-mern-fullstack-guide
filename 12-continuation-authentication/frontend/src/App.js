@@ -1,11 +1,5 @@
 import React, { Suspense } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-} from 'react-router-dom';
-import process from 'process';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { useAuth } from './shared/hooks/auth-hook';
 
@@ -14,43 +8,38 @@ import { AuthContext } from './shared/context/auth-context';
 import LoadingSpinner from './shared/components/UIElements/LoadingSpinner';
 
 // replace imports with lazy loading...
-// import Users from './user/pages/Users';
-// import NewPlace from './places/pages/NewPlace';
-// import UserPlaces from './places/pages/UserPlaces';
-// import UpdatePlace from './places/pages/UpdatePlace';
-// import Auth from './user/pages/Auth';
-const Users = React.lazy(() => import('./user/pages/Users'));
-const NewPlace = React.lazy(() => import('./places/pages/NewPlace'));
-const UserPlaces = React.lazy(() => import('./places/pages/UserPlaces'));
-const UpdatePlace = React.lazy(() => import('./places/pages/UpdatePlace'));
-const Auth = React.lazy(() => import('./user/pages/Auth'));
+const Users = React.lazy(() => import('./pages/Users'));
+const UserPlaces = React.lazy(() => import('./pages/UserPlaces'));
+const PlaceCreate = React.lazy(() => import('./pages/PlaceCreate'));
+const PlaceUpdate = React.lazy(() => import('./pages/PlaceUpdate'));
+const Auth = React.lazy(() => import('./pages/Auth'));
 
 const App = () => {
   const { token, login, logout, userId } = useAuth();
 
-  console.log('BACKEND_URL', process.env.REACT_APP_BACKEND_URL);
-
   let routes;
 
+  // list more specific routes before the more general route.
   if (token) {
     routes = (
       <Switch>
         <Route path='/' exact>
           <Users />
         </Route>
+
         <Route path='/users' exact>
           <Users />
         </Route>
         <Route path='/users/:userId/places' exact>
           <UserPlaces />
         </Route>
-        <Route path='/places/new' exact>
-          <NewPlace />
+
+        <Route path='/places/new'>
+          <PlaceCreate />
         </Route>
         <Route path='/places/:placeId'>
-          <UpdatePlace />
+          <PlaceUpdate />
         </Route>
-        <Redirect to='/' />
       </Switch>
     );
   } else {
@@ -59,16 +48,17 @@ const App = () => {
         <Route path='/' exact>
           <Users />
         </Route>
-        <Route path='/users'>
+
+        <Route path='/users' exact>
           <Users />
         </Route>
-        <Route path='/users/:userId/places'>
+        <Route path='/users/:userId/places' exact>
           <UserPlaces />
         </Route>
+
         <Route path='/auth'>
           <Auth />
         </Route>
-        <Redirect to='/auth' />
       </Switch>
     );
   }

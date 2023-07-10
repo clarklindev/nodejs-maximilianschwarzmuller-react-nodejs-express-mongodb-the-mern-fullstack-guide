@@ -1,25 +1,27 @@
 const express = require('express');
 const { check } = require('express-validator');
-const usersController = require('../controllers/users-controller');
+const authController = require('../controllers/auth');
 
 const router = express.Router();
 const fileUpload = require('../middleware/file-upload');
 
-router.get('/', usersController.getUsers);
-
-router.post(
-  '/signup',
-  fileUpload.single('image'),
-  [
+const validation = {
+  validateSignup: [
     check('name').not().isEmpty(),
     check('email')
       .normalizeEmail({ gmail_remove_dots: false }) // Test@test.com => test@test.com
       .isEmail(),
     check('password').isLength({ min: 6 }),
   ],
-  usersController.signup
+};
+
+router.post(
+  '/signup',
+  fileUpload.single('image'),
+  validation.validateSignup,
+  authController.signup
 );
 
-router.post('/login', usersController.login);
+router.post('/login', authController.login);
 
 module.exports = router;

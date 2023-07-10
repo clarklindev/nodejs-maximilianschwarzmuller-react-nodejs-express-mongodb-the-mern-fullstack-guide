@@ -180,7 +180,7 @@ let token;
 try {
   token = jwt.sign(
     { userId: createdUser.id, email: createdUser.email }, //payload: cant be, string, object or buffer
-    process.env.JWT_PRIVATE_KEY, //private key
+    process.env.JWT_ENCODING_STRING, //private key
     { expiresIn: '1h' }
   ); //assign data - inputs are payload : string, object or buffer
 } catch (err) {
@@ -224,7 +224,7 @@ module.exports = (req, res, next) => {
     }
 
     //verify token
-    const decodedToken = jwt.verify(token, process.env.JWT_PRIVATE_KEY); //verify(token, private key)
+    const decodedToken = jwt.verify(token, process.env.JWT_ENCODING_STRING); //verify(token, private key)
 
     //returns object - that we add userData prop to
     req.userData = { userId: decodedToken.userId };

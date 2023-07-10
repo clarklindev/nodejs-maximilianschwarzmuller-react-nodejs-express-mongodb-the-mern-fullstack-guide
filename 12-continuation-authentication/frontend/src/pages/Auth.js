@@ -1,22 +1,22 @@
 import React, { useState, useContext } from 'react';
 
-import Card from '../../shared/components/UIElements/Card';
-import Input from '../../shared/components/FormElements/Input';
-import Button from '../../shared/components/FormElements/Button';
+import Card from '../shared/components/UIElements/Card';
+import Input from '../shared/components/FormElements/Input';
+import Button from '../shared/components/FormElements/Button';
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
-} from '../../shared/util/validators';
-import { useForm } from '../../shared/hooks/form-hook';
-import { AuthContext } from '../../shared/context/auth-context';
-import ImageUpload from '../../shared/components/FormElements/ImageUpload';
+} from '../shared/util/validators';
+import { useForm } from '../shared/hooks/form-hook';
+import { AuthContext } from '../shared/context/auth-context';
+import ImageUpload from '../shared/components/FormElements/ImageUpload';
 import './Auth.css';
 
-import { useHttpClient } from '../../shared/hooks/http-hook';
+import { useHttpClient } from '../shared/hooks/http-hook';
 
-import ErrorModal from '../../shared/components/UIElements/ErrorModal';
-import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+import ErrorModal from '../shared/components/UIElements/ErrorModal';
+import LoadingSpinner from '../shared/components/UIElements/LoadingSpinner';
 
 const Auth = () => {
   const auth = useContext(AuthContext);
@@ -72,7 +72,7 @@ const Auth = () => {
     if (isLoginMode) {
       try {
         const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/users/login`,
+          `${process.env.REACT_APP_BACKEND_URL}/auth/login`,
           'POST',
           JSON.stringify({
             email: formState.inputs.email.value,
@@ -91,7 +91,7 @@ const Auth = () => {
         formData.append('password', formState.inputs.password.value);
         formData.append('image', formState.inputs.image.value);
         const responseData = await sendRequest(
-          process.env.REACT_APP_BACKEND_URL + '/users/signup',
+          `${process.env.REACT_APP_BACKEND_URL}/auth/signup`,
           'POST',
 
           // JSON.stringify({

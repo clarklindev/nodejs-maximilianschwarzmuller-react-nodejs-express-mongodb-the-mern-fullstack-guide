@@ -1,26 +1,10 @@
 const { v4: uuid } = require('uuid');
 const { validationResult } = require('express-validator');
-const HttpError = require('../models/http-error');
-const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const getUsers = async (req, res, next) => {
-  let users;
-  try {
-    //users = User.find({}, 'email name');    //only return 'email' and 'name'
-    users = await User.find({}, '-password'); //dont return 'password'
-  } catch (err) {
-    const error = new HttpError(
-      'Fetching users failed, please try again later',
-      500
-    );
-    return next(error);
-  }
-  res.json({
-    users: users.map((user) => user.toObject({ getters: true })),
-  });
-};
+const HttpError = require('../models/http-error');
+const User = require('../models/user');
 
 const signup = async (req, res, next) => {
   const errors = validationResult(req);
@@ -82,7 +66,7 @@ const signup = async (req, res, next) => {
   try {
     token = jwt.sign(
       { userId: createdUser.id, email: createdUser.email }, //payload: cant be, string, object or buffer
-      process.env.JWT_PRIVATE_KEY, //private key
+      process.env.JWT_ENCODING_STRING, //private key
       { expiresIn: '1h' }
     ); //assign data - inputs are payload : string, object or buffer
   } catch (err) {
@@ -149,7 +133,7 @@ const login = async (req, res, next) => {
   try {
     token = jwt.sign(
       { userId: existingUser.id, email: existingUser.email }, //payload is data you want to encode into token: string, object or buffer
-      process.env.JWT_PRIVATE_KEY, //private key
+      process.env.JWT_ENCODING_STRING, //private key
       { expiresIn: '1h' }
     ); //assign data - inputs are payload : string, object or buffer
   } catch (err) {
@@ -169,6 +153,5 @@ const login = async (req, res, next) => {
   // });
 };
 
-exports.getUsers = getUsers;
 exports.signup = signup;
 exports.login = login;
