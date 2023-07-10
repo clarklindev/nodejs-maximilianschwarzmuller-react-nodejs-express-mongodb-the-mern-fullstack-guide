@@ -11,7 +11,7 @@ import {
 import { useForm } from '../shared/hooks/form-hook';
 import { AuthContext } from '../shared/context/auth-context';
 import ImageUpload from '../shared/components/FormElements/ImageUpload';
-import './Auth.css';
+import styles from './Auth.module.css';
 
 import { useHttpClient } from '../shared/hooks/http-hook';
 
@@ -112,7 +112,7 @@ const Auth = () => {
   return (
     <>
       <ErrorModal error={error} onClear={clearError} />
-      <Card className='authentication'>
+      <Card className={styles['authentication']}>
         {isLoading && <LoadingSpinner asOverlay />}
         <h2>Login Required</h2>
         <hr />

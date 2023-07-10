@@ -110,35 +110,34 @@ const UpdatePlace = () => {
     <>
       <ErrorModal error={error} onClear={clearError} />
       {!isLoading && loadedPlace && (
-        <form
-          className={styles['place-form']}
-          onSubmit={placeUpdateSubmitHandler}
-        >
-          <Input
-            id='title'
-            element='input'
-            type='text'
-            label='Title'
-            validators={[VALIDATOR_REQUIRE()]}
-            errorText='Please enter a valid title.'
-            onInput={inputHandler}
-            initialValue={loadedPlace.title}
-            initialValid={true}
-          />
-          <Input
-            id='description'
-            element='textarea'
-            label='Description'
-            validators={[VALIDATOR_MINLENGTH(5)]}
-            errorText='Please enter a valid description (min. 5 characters).'
-            onInput={inputHandler}
-            initialValue={loadedPlace.description}
-            initialValid={true}
-          />
-          <Button type='submit' disabled={!formState.isValid}>
-            UPDATE PLACE
-          </Button>
-        </form>
+        <div className={styles.formContainer}>
+          <form onSubmit={placeUpdateSubmitHandler}>
+            <Input
+              id='title'
+              element='input'
+              type='text'
+              label='Title'
+              validators={[VALIDATOR_REQUIRE()]}
+              errorText='Please enter a valid title.'
+              onInput={inputHandler}
+              initialValue={loadedPlace.title}
+              initialValid={true}
+            />
+            <Input
+              id='description'
+              element='textarea'
+              label='Description'
+              validators={[VALIDATOR_MINLENGTH(5)]}
+              errorText='Please enter a valid description (min. 5 characters).'
+              onInput={inputHandler}
+              initialValue={loadedPlace.description}
+              initialValid={true}
+            />
+            <Button type='submit' disabled={!formState.isValid}>
+              UPDATE PLACE
+            </Button>
+          </form>
+        </div>
       )}
     </>
   );

@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Button from './Button';
 
-import './ImageUpload.css';
+import styles from './ImageUpload.module.css';
 
 const ImageUpload = (props) => {
   const { id, onInput, errorText, center } = props;
@@ -55,8 +55,13 @@ const ImageUpload = (props) => {
         accept='.jpg, .jpeg, .png'
         onChange={pickedHandler}
       />
-      <div className={`image-upload ${center && 'center'}`}>
-        <div className='image-upload__preview'>
+      <div
+        className={[
+          styles['image-upload'],
+          styles[`${center && 'center'}`],
+        ].join(' ')}
+      >
+        <div className={styles['image-upload__preview']}>
           {previewUrl && <img src={previewUrl} alt='Preview' />}
           {!previewUrl && <p>Please pick an image</p>}
         </div>

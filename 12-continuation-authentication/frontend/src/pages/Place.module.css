@@ -1,6 +1,12 @@
-.place-form {
+.formContainer{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content: center;
+}
+
+.formContainer form {
   list-style: none;
-  margin: 0 auto;
   padding: 1rem;
   width: 90%;
   max-width: 40rem;
@@ -8,3 +14,4 @@
   border-radius: 6px;
   background: white;
 }
+
