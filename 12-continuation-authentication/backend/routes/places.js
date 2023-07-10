@@ -30,6 +30,7 @@ router.post(
   validation.validateCreate,
   placesController.createPlace
 );
+
 router.patch('/:pid', validation.validateUpdate, placesController.updatePlace);
 router.delete('/:pid', placesController.deletePlace);
 

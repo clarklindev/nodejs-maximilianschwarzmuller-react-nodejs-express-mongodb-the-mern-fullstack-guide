@@ -92,7 +92,7 @@ app.use((error, req, res, next) => {
 
 ## when uploading a file to server, to gain access to file via api
 
-- specify while files in which folder to return
+- specify which files in which folder to return
 
 ```js
 const path = require('path');
@@ -154,7 +154,10 @@ npm run start
 
 - (google account)
 
+- should you have trouble deploying because "Error: Failed to get Firebase project maximilian-nodejsmern-frontend. Please make sure the project exists and your account has permission to access it." first logout `firebase logout`
+
 ```shell
+firebase logout
 firebase login
 ```
 

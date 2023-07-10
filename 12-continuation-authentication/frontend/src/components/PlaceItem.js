@@ -55,8 +55,8 @@ const PlaceItem = (props) => {
         show={showMap}
         onCancel={closeMapHandler}
         header={props.address}
-        contentClass='place-item__modal-content'
-        footerClass='place-item__modal-actions'
+        contentClass={styles['place-item__modal-content']}
+        footerClass={styles['place-item__modal-actions']}
         footer={<Button onClick={closeMapHandler}>CLOSE</Button>}
       >
         <div className={styles['map-container']}>
@@ -67,7 +67,7 @@ const PlaceItem = (props) => {
         show={showConfirmModal}
         onCancel={cancelDeleteHandler}
         header='Are you sure?'
-        footerClass='place-item__modal-actions'
+        footerClass={styles['place-item__modal-actions']}
         footer={
           <React.Fragment>
             <Button inverse onClick={cancelDeleteHandler}>

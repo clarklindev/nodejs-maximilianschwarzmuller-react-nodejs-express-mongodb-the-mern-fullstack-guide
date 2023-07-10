@@ -95,7 +95,7 @@ const connectDB = async () => {
       { dbName: process.env.DB_NAME }
     );
 
-    const port = process.env.PORT || 5000;
+    const port = process.env.PORT || 3001;
     app.listen(port);
     console.log(`server running at: ${process.env.BACKEND_URL}:${port}`);
   } catch (err) {

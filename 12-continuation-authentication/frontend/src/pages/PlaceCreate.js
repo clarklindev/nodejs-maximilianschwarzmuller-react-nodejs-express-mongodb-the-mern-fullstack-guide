@@ -59,6 +59,8 @@ const NewPlace = () => {
 
       //for anything but "GET" requests, browser sends an OPTIONS request before it sends the actual request you want to send
       //to find out if the server will permit the request you want to send
+      // 'Content-Type': 'application/json', //dont add content-type: application/json as content-type handled by multer to include files
+
       await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/places`,
         'POST',
@@ -70,7 +72,6 @@ const NewPlace = () => {
         // }),
         formData,
         {
-          'Content-Type': 'application/json',
           Authorization: 'Bearer ' + auth.token,
         }
       );
@@ -117,6 +118,7 @@ const NewPlace = () => {
             onInput={inputHandler}
             errorText='Please provide an image'
           />
+          <br />
           <Button type='submit' disabled={!formState.isValid}>
             ADD PLACE
           </Button>
