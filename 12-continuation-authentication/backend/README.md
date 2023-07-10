@@ -258,3 +258,11 @@ if (req.method === 'OPTIONS') {
   return next();
 }
 ```
+
+## deployment
+
+using render to deploy backend:
+
+dashboard.render.com
+
+note: need to update environment variables section
